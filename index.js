@@ -3,13 +3,16 @@ for (var i = 0; i < document.querySelectorAll(".set button").length; i++) {
     .querySelectorAll(".set button")
     [i].addEventListener("click", function () {
       var buttonInnerHtml = this.innerHTML;
-
       makeSound(buttonInnerHtml);
+
+      buttomAnimation(buttonInnerHtml);
     });
 }
 
 document.addEventListener("keypress", function (event) {
   makeSound(event.key);
+
+  buttomAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -48,4 +51,14 @@ function makeSound(key) {
       this.innerHTML = "gayaaaa";
       break;
   }
+}
+
+function buttomAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 200);
 }
